@@ -1,20 +1,33 @@
 
-/* AURORA — FANTASY EDITION */
+/* AURORA - NUOVA HOME FANTASY PULITA */
+
 #app {
-  background: linear-gradient(180deg,#170b31,#38205c 55%,#11091f);
+  background: #160a2b;
+}
+
+header {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg,#1b0b35,#341454);
+  border-bottom: 1px solid #c994ff66;
 }
 
 #home {
   position: relative;
-  min-height: 850px;
-  padding: 290px 18px 45px;
-  background:
-    linear-gradient(180deg,
+  min-height: 100dvh;
+  padding: clamp(280px,85vw,400px) 16px 45px;
+  background-image:
+    linear-gradient(
+      to bottom,
       transparent 0%,
-      rgba(15,5,35,.10) 24%,
-      rgba(15,5,35,.85) 52%,
-      #130925 100%),
-    url("aurora-fantasy-home.png") center top / 100% auto no-repeat;
+      transparent 30%,
+      rgba(22,10,43,.35) 45%,
+      #160a2b 67%
+    ),
+    url("6e2f73c6-874c-4ae5-9592-11f2f3d57b69.png");
+  background-position: center top;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
 }
 
 #home .hero {
@@ -22,128 +35,58 @@
 }
 
 #home h1 {
+  margin: 0 0 8px;
   font-family: Georgia,serif;
-  font-size: 27px;
-  color: #ffe4a1;
-  text-shadow: 0 3px 10px #000,0 0 18px #c47bff;
+  font-size: 28px;
+  color: #ffe2a1;
+  text-shadow: 0 3px 12px #000;
 }
 
 #home p {
-  color: #fff0df;
-  text-shadow: 0 2px 7px #000;
+  margin: 0 0 20px;
+  color: #fff0e3;
+  text-shadow: 0 2px 8px #000;
 }
 
-#home .btn {
+#home > .btn {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 17px;
   border: 2px solid #ffdc8c;
-  border-radius: 17px;
-  background: linear-gradient(180deg,#ffe9a5,#c58b3e);
+  background: linear-gradient(#ffe9a5,#c58b3e);
   color: #311342;
-  box-shadow: 0 4px 0 #654019,0 0 18px #e8a53c66;
   font-weight: 900;
-}
-
-#home .btn.alt {
-  background: linear-gradient(160deg,#4c2079,#200c42);
-  border: 1px solid #dca9ff;
-  color: #fff1d1;
-  box-shadow: 0 4px 0 #17082b,0 0 15px #9f41e555;
+  box-shadow: 0 5px 18px #0009;
 }
 
 #home .menu {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
   gap: 12px;
-  margin-top: 22px;
 }
 
-#home .menu button {
-  min-height: 90px;
-  transition: transform .2s,filter .2s;
-}
-
-#home .menu button:hover {
-  transform: translateY(-3px);
-  filter: brightness(1.2);
+#home .menu .btn {
+  min-height: 92px;
+  border: 1px solid #dca9ff;
+  background: linear-gradient(145deg,#512478,#230d43);
+  color: #fff1d1;
+  box-shadow: 0 5px 15px #0007;
 }
 
 #home .menu span {
-  font-size: 29px;
   display: block;
+  font-size: 29px;
   margin-bottom: 5px;
 }
 
-header {
-  background: linear-gradient(180deg,#1b0b35,#341454);
-  border-bottom: 1px solid #c994ff66;
-}
-
-.logo {
-  color: #ffe0a0;
-  text-shadow: 0 0 14px #ffb84d;
+#home .btn:hover {
+  filter: brightness(1.15);
 }
 
 @media(max-width:480px) {
-  #home {
-    padding-top: 250px;
-    min-height: 100dvh;
-  }
   #home h1 {
     font-size: 24px;
-  }
-}
-
-/* AURORA — CORREZIONE SCHERMATA PRINCIPALE */
-
-/* Mantiene un solo logo, quello dell'immagine */
-body:has(#home.active) header .logo,
-body:has(#home.active) header .sub {
-  visibility: hidden;
-}
-
-/* Mostra la scena del castello e del drago */
-#home {
-  padding-top: 0 !important;
-  background:
-    linear-gradient(to bottom,
-      transparent 0%,
-      transparent 37%,
-      #160a2b 60%,
-      #160a2b 100%),
-    url("aurora-fantasy-home.png")
-      center top / 100% auto no-repeat;
-}
-
-/* Evita che le scritte vere coprano quelle dell'immagine */
-#home h1,
-#home > p {
-  display: none;
-}
-
-/* Lascia spazio alla scena e rende cliccabili i comandi */
-#home > .btn {
-  margin-top: 58%;
-  position: relative;
-  z-index: 2;
-}
-
-#home .menu {
-  position: relative;
-  z-index: 2;
-  margin-top: 22px;
-  padding-bottom: 30px;
-}
-
-/* Copre la parte inferiore dell'immagine,
-   dove sono disegnati i pulsanti finti */
-#home .menu::before {
-  content: "";
-  position: absolute;
-  inset: -12px -18px -35px;
-  z-index: -1;
-  background: #160a2b;
-  border-radius: 20px 20px 0 0;
-}
-
-@media(max-width:480px) {
-  #home > .btn {
-    margin-top: 58%;
   }
 }
