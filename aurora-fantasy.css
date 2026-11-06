@@ -1,0 +1,91 @@
+
+/* AURORA — FANTASY EDITION */
+#app {
+  background: linear-gradient(180deg,#170b31,#38205c 55%,#11091f);
+}
+
+#home {
+  position: relative;
+  min-height: 850px;
+  padding: 290px 18px 45px;
+  background:
+    linear-gradient(180deg,
+      transparent 0%,
+      rgba(15,5,35,.10) 24%,
+      rgba(15,5,35,.85) 52%,
+      #130925 100%),
+    url("aurora-fantasy-home.png") center top / 100% auto no-repeat;
+}
+
+#home .hero {
+  display: none;
+}
+
+#home h1 {
+  font-family: Georgia,serif;
+  font-size: 27px;
+  color: #ffe4a1;
+  text-shadow: 0 3px 10px #000,0 0 18px #c47bff;
+}
+
+#home p {
+  color: #fff0df;
+  text-shadow: 0 2px 7px #000;
+}
+
+#home .btn {
+  border: 2px solid #ffdc8c;
+  border-radius: 17px;
+  background: linear-gradient(180deg,#ffe9a5,#c58b3e);
+  color: #311342;
+  box-shadow: 0 4px 0 #654019,0 0 18px #e8a53c66;
+  font-weight: 900;
+}
+
+#home .btn.alt {
+  background: linear-gradient(160deg,#4c2079,#200c42);
+  border: 1px solid #dca9ff;
+  color: #fff1d1;
+  box-shadow: 0 4px 0 #17082b,0 0 15px #9f41e555;
+}
+
+#home .menu {
+  gap: 12px;
+  margin-top: 22px;
+}
+
+#home .menu button {
+  min-height: 90px;
+  transition: transform .2s,filter .2s;
+}
+
+#home .menu button:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.2);
+}
+
+#home .menu span {
+  font-size: 29px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+header {
+  background: linear-gradient(180deg,#1b0b35,#341454);
+  border-bottom: 1px solid #c994ff66;
+}
+
+.logo {
+  color: #ffe0a0;
+  text-shadow: 0 0 14px #ffb84d;
+}
+
+@media(max-width:480px) {
+  #home {
+    padding-top: 250px;
+    min-height: 100dvh;
+  }
+  #home h1 {
+    font-size: 24px;
+  }
+}
