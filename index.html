@@ -3,7 +3,223 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initia
+/* AURORA FANTASY EDITION */
+:root{
+  --gold:#ffe6ad;
+  --purple:#b994ff;
+  --ink:#201436;
+  --panel:#291b49;
+}
+body{
+  background:#080e21;
+  color:#fff8e9;
+}
+#app{
+  isolation:isolate;
+  background:
+    radial-gradient(ellipse at 52% 4%,#ffe6a75c,transparent 24%),
+    radial-gradient(ellipse at 84% 23%,#a16af04a,transparent 35%),
+    linear-gradient(180deg,#09142c 0%,#263456 29%,#513e75 58%,#140e2d 100%);
+  box-shadow:0 0 90px #0009;
+}
+#app:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background-image:
+    radial-gradient(2px 2px at 12% 8%,#fff 99%,transparent),
+    radial-gradient(2px 2px at 72% 13%,#fff8 99%,transparent),
+    radial-gradient(2px 2px at 41% 27%,#fff9 99%,transparent),
+    radial-gradient(3px 3px at 84% 39%,#ffe1a8 99%,transparent),
+    radial-gradient(2px 2px at 24% 47%,#fff9 99%,transparent),
+    radial-gradient(2px 2px at 60% 61%,#fff7 99%,transparent);
+  background-size:280px 330px;
+  animation:twinkle 7s ease-in-out infinite alternate;
+}
+#app:after{
+  content:"";
+  position:absolute;
+  left:-15%;
+  right:-15%;
+  top:240px;
+  height:290px;
+  z-index:0;
+  pointer-events:none;
+  opacity:.55;
+  background:linear-gradient(0deg,#151a39,#253758 70%,transparent);
+  clip-path:polygon(0 100%,0 76%,12% 59%,21% 77%,35% 21%,50% 69%,63% 39%,77% 78%,90% 34%,100% 72%,100% 100%);
+}
+header,.screen,.page,footer{
+  position:relative;
+  z-index:1;
+}
+header{
+  padding:25px 20px 18px;
+  border-bottom:1px solid #ffe7b32b;
+  background:linear-gradient(180deg,#090d21b8,transparent);
+}
+.logo{
+  font-family:Georgia,serif;
+  font-size:clamp(29px,8vw,39px);
+  letter-spacing:5px;
+  color:#fff0c2;
+  text-shadow:0 0 15px #ffcb6c99,0 4px 3px #1a092b;
+}
+.sub,.subtitle{
+  color:#e8d5ff;
+  letter-spacing:2.5px;
+}
+.coins,.wallet{
+  border:1px solid #f5d79ca8;
+  background:linear-gradient(135deg,#654d75a8,#211b3ad9);
+  box-shadow:inset 0 1px 0 #fff6,0 6px 20px #0006;
+  color:#ffe4a6;
+}
+h1,h2,h3{
+  color:#ffe8b4;
+  text-shadow:0 3px 12px #080b23,0 0 20px #e7ae6144;
+}
+p{
+  color:#f0e5f7;
+  line-height:1.55;
+}
+.hero{
+  position:relative;
+  overflow:hidden;
+  min-height:300px;
+  padding:25px 18px;
+  border:1px solid #ffdfaaad;
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 50% 23%,#fff3b03c,transparent 33%),
+    linear-gradient(145deg,#52416cdd,#171b3df2 68%,#29183ff2);
+  box-shadow:0 18px 40px #050714a6,inset 0 1px 0 #fff6;
+}
+.hero:before{
+  content:"✦        ✧       ✦";
+  position:absolute;
+  left:0;
+  right:0;
+  top:12px;
+  color:#ffe4a788;
+  letter-spacing:10px;
+  pointer-events:none;
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:auto -5% 0;
+  height:55px;
+  pointer-events:none;
+  background:linear-gradient(#222c4a,#12142d);
+  clip-path:polygon(0 100%,0 75%,20% 50%,32% 83%,47% 22%,60% 80%,79% 40%,100% 80%,100% 100%);
+  opacity:.65;
+}
+.hero-art{
+  font-size:clamp(75px,19vw,110px);
+  filter:drop-shadow(0 0 22px #ffdc9677) drop-shadow(0 13px 8px #0009);
+  animation:float 4.5s ease-in-out infinite;
+}
+.btn{
+  border:1px solid #fff0c6;
+  border-radius:16px;
+  background:linear-gradient(160deg,#fff3cc,#eac47b 48%,#b77d3d);
+  color:#33203c;
+  text-shadow:0 1px 0 #fff5;
+  box-shadow:inset 0 2px 0 #fff9,0 5px 0 #76502d,0 10px 22px #0007;
+  transition:transform .15s,filter .15s;
+}
+.btn:hover,.tile:hover{
+  filter:brightness(1.12);
+  transform:translateY(-2px);
+}
+.btn.secondary,.btn.alt{
+  background:linear-gradient(145deg,#8166ad,#3c2b63);
+  border-color:#d7c2ff;
+  color:#fff;
+  text-shadow:0 1px 3px #0008;
+  box-shadow:inset 0 1px 0 #fff5,0 5px 0 #241739,0 10px 18px #0005;
+}
+.tile,.panel,.island{
+  border:1px solid #ffe4ae70;
+  border-radius:22px;
+  background:linear-gradient(145deg,#75608c70,#241a40e8 70%);
+  box-shadow:inset 0 1px 0 #fff3,0 12px 28px #09091b7d;
+  backdrop-filter:blur(8px);
+}
+.tile{
+  transition:transform .15s,filter .15s;
+}
+.tile span{
+  filter:drop-shadow(0 6px 10px #0008);
+}
+.node{
+  border:2px solid #ffe8b3;
+  background:radial-gradient(circle at 30% 20%,#fff6d7,#d8a257 70%,#8e6039);
+  box-shadow:inset 0 2px 0 #fff9,0 4px 10px #0008;
+}
+.node.done{
+  background:linear-gradient(145deg,#c5a2ff,#6f4caa);
+}
+.node.current{
+  outline:3px solid #ffe6a8;
+  box-shadow:0 0 20px #f8cb81aa;
+}
+.node.lock,.node.locked{
+  background:#2b2744;
+  color:#988caa;
+  border-color:#67567d;
+}
+.cell{
+  background:linear-gradient(#fff9e5,#e4d1a8);
+  box-shadow:0 4px 10px #0006;
+}
+.cell.empty{
+  background:#d8d0ff19;
+  box-shadow:inset 0 2px 8px #0005;
+}
+#wheel,.wheel{
+  background:radial-gradient(circle,#69558891,#272447d9 70%);
+  border:2px solid #f3d7a780;
+  box-shadow:0 0 0 9px #e5d4ff0c,0 15px 35px #08081b99,inset 0 0 30px #d4adff2e;
+}
+.letter{
+  background:radial-gradient(circle at 30% 20%,#fffdf1,#f0d8a3 72%,#be9a5d);
+  border:1px solid #fff7dd;
+  box-shadow:inset 0 2px 0 #fff9,0 6px 0 #8e7048,0 10px 16px #0007;
+}
+.letter.on{
+  background:radial-gradient(circle,#fff6b4,#e9a946);
+  box-shadow:0 0 22px #ffd27fbb,0 5px 0 #98713c;
+}
+.memory button,.memory-card,.choice{
+  box-shadow:0 6px 15px #0006;
+}
+.modal{
+  background:radial-gradient(circle at top,#8c6ba5,#292044 75%);
+  box-shadow:0 30px 70px #000b,0 0 40px #e8b46b3b;
+}
+.dragon,#dragonArt{
+  filter:drop-shadow(0 0 18px #e4b3ff88) drop-shadow(0 15px 12px #0008);
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+@keyframes twinkle{
+  from{opacity:.45}
+  to{opacity:1}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-art,.dragon,#dragonArt,#app:before{
+    animation:none;
+  }
+}
+l-scale=1">
 <meta name="theme-color" content="#24133f">
 <title>AURORA - Le Isole delle Parole</title>
 <style>
