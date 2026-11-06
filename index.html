@@ -3,121 +3,190 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#25113e">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#24133f">
 <title>AURORA - Le Isole delle Parole</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#100b25;color:white;font-family:system-ui,Arial,sans-serif}
-button{font:inherit;cursor:pointer}
-#app{max-width:520px;min-height:100dvh;margin:auto;position:relative;overflow:hidden;background:radial-gradient(circle at 75% 12%,#dcb3ff55,transparent 25%),linear-gradient(#29164f,#66448c 52%,#1b143c)}
-#app:before{content:"✦　✧　　 ✦　　 ✧　 ✦";position:absolute;top:12%;left:4%;color:#ffe4aa88;font-size:24px;letter-spacing:15px;pointer-events:none}
-header{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:25px 18px 12px}
-.logo{font: bold 30px Georgia,serif;letter-spacing:4px;color:#ffe4a5;text-shadow:0 3px 15px #000}
-.small{font-size:10px;letter-spacing:2px;color:#e7d5ff}
-.coins{background:#ffffff20;border:1px solid #ffe5aa80;border-radius:22px;padding:10px 15px;color:#ffe4a5;font-weight:bold}
-.screen{display:none;position:relative;z-index:1;padding:12px 18px 30px;text-align:center}
+body{margin:0;background:#100a20;color:#fff;font-family:system-ui,Arial}
+button,input{font:inherit}
+button{cursor:pointer}
+#app{max-width:540px;margin:auto;min-height:100dvh;background:radial-gradient(circle at 70% 5%,#ac78d855,transparent 35%),linear-gradient(#24133f,#5b397d 50%,#19112e);padding-bottom:30px}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 18px}
+.logo{font:900 30px Georgia,serif;color:#ffe0a0;letter-spacing:4px}
+.sub{font-size:10px;letter-spacing:2px;color:#e5ccff}
+.coins{border:1px solid #f4d79c;background:#ffffff20;border-radius:30px;padding:10px;color:#ffe0a0;font-weight:bold}
+.screen{display:none;padding:12px 18px;text-align:center}
 .screen.active{display:block}
-h1,h2,h3{font-family:Georgia,serif;color:#ffe1a1}
-h1{font-size:29px;margin:8px 0}
-h2{font-size:25px}
-p{color:#e5d7f5}
-.btn{border:1px solid #ffe0a5;background:linear-gradient(#fbe7ac,#c8964a);color:#35214e;font-weight:800;border-radius:17px;padding:13px 20px;box-shadow:0 5px 0 #78502b}
-.btn.secondary{background:#553579;color:#fff;border-color:#bda0eb;box-shadow:0 5px 0 #291746}
-.island{margin:18px auto;padding:18px 12px;border:1px solid #dfc39488;border-radius:25px;background:linear-gradient(145deg,#8052a777,#261646bb);box-shadow:0 12px 30px #10051d77}
-.island .art{font-size:55px;margin:8px}
-.island h2{margin:8px}
-.island p{font-size:13px;margin:7px 0 18px}
-.nodes{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-.node{aspect-ratio:1;border-radius:50%;border:2px solid #ffe0a5;background:linear-gradient(#ffe6a6,#c59347);color:#322048;font-weight:900;box-shadow:0 4px 0 #7e582c}
-.node.done{background:linear-gradient(#e4c9ff,#9262c3);border-color:#e9ceff}
-.node.current{outline:3px solid #e6bfff;outline-offset:2px}
-.node.locked{background:#3a2c57;color:#8c7da9;border-color:#6b5688;box-shadow:none}
-.node:disabled{cursor:default}
-#game{min-height:calc(100dvh - 100px)}
-.levelhead{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.levelhead .btn{padding:9px 12px;font-size:13px}
-.chapter{font-size:12px;letter-spacing:2px;color:#fce3aa;margin-top:14px}
-#levelTitle{margin:8px 0 5px}
-#description{font-size:13px;margin:0}
-.progress{height:7px;background:#ffffff30;border-radius:10px;margin:16px auto;max-width:300px;overflow:hidden}
-#bar{height:100%;width:0;background:#ffe0a5;transition:width .3s}
-#board{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:150px;margin:12px auto}
+h1,h2,h3{font-family:Georgia,serif;color:#ffe0a0}
+h1{font-size:30px}
+p{color:#e7d8f4}
+.btn{border:1px solid #ffe0a0;border-radius:15px;background:linear-gradient(#ffe9b0,#c99549);color:#352046;padding:13px 17px;font-weight:800;box-shadow:0 4px 0 #76502a}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #76502a}
+.btn.alt{background:#64468d;color:white;border-color:#d4b9ef;box-shadow:0 4px 0 #302045}
+.btn:disabled{opacity:.45}
+.back{display:block;margin:0 0 15px;text-align:left}
+.hero{font-size:80px;margin:18px 0;filter:drop-shadow(0 12px 15px #0007)}
+.panel{border:1px solid #e8c99477;border-radius:22px;padding:17px;margin:15px 0;background:#ffffff12;box-shadow:0 10px 25px #10062255}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.menu button{min-height:90px;font-weight:800;font-size:16px}
+.menu button span{display:block;font-size:30px;margin-bottom:5px}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+.node{aspect-ratio:1;border-radius:50%;border:2px solid #ffe0a0;background:#f5d59b;color:#39264f;font-weight:900}
+.node.lock{background:#34264e;color:#8e7ca4;border-color:#655179}
+.node.current{outline:3px solid #f7d19e;outline-offset:2px}
+#board{display:flex;flex-direction:column;align-items:center;gap:8px;margin:20px auto;min-height:135px}
 .word{display:flex;gap:5px}
-.cell{width:clamp(30px,8vw,43px);height:clamp(39px,10vw,48px);display:grid;place-items:center;border-radius:9px;background:#fff2d9;color:#38234f;font-size:21px;font-weight:900;border-bottom:4px solid #bd9c67}
-.cell.empty{background:#ffffff20;border:2px solid #ffffff85;border-bottom:4px solid #ffffff55}
-#entry{font-size:26px;font-weight:900;letter-spacing:4px;height:43px;margin-top:10px}
-#wheel{width:min(69vw,260px);height:min(69vw,260px);min-width:205px;min-height:205px;margin:4px auto 16px;border-radius:50%;position:relative;touch-action:none;user-select:none;background:#ffffff17;border:1px solid #ffffff70;box-shadow:0 15px 45px #10062588}
+.cell{width:clamp(29px,8vw,42px);height:43px;display:grid;place-items:center;background:#ffffff22;border:2px solid #ffffff77;border-radius:8px;font-size:21px;font-weight:900}
+.cell.found{background:#ffe6b3;color:#38234e;border-color:#ffe6b3}
+#entry{font-size:25px;letter-spacing:4px;font-weight:900;min-height:42px}
+#wheel{width:250px;height:250px;max-width:72vw;max-height:72vw;margin:5px auto 20px;border-radius:50%;border:1px solid #ffffff66;background:#ffffff13;position:relative;touch-action:none;user-select:none}
 #wheel svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.letter{position:absolute;width:24%;height:24%;border-radius:50%;transform:translate(-50%,-50%);display:grid;place-items:center;background:linear-gradient(#fff9e7,#e2cfad);color:#3c2756;font-size:clamp(22px,6vw,30px);font-weight:900;box-shadow:0 6px 0 #aa906a;pointer-events:none}
-.letter.on{background:linear-gradient(#fff1b5,#f4bc64);box-shadow:0 5px 0 #a57937}
+.letter{position:absolute;transform:translate(-50%,-50%);width:25%;height:25%;border-radius:50%;display:grid;place-items:center;background:#f8e8c9;color:#34234d;font-size:26px;font-weight:900;pointer-events:none;box-shadow:0 5px 0 #b09a76}
+.letter.on{background:#ffd27d}
 .actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.actions .btn{font-size:12px;padding:12px}
-#message{min-height:25px;margin-top:13px;color:#ffe5aa;font-weight:700}
-#overlay{position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;background:#0c0825dd;padding:25px}
+#msg{min-height:30px;color:#ffe0a0;font-weight:bold;margin-top:14px}
+.memory{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.memory button{aspect-ratio:1;border-radius:13px;border:2px solid #e4c49a;background:#4c3175;color:#fff;font-size:29px}
+.memory button.open{background:#ffe2a2;color:#3d2757}
+.options{display:grid;gap:10px;margin:15px 0}
+.shop{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.shop .panel{margin:0}
+.shop .art{font-size:43px}
+.stat{display:flex;justify-content:space-between;border-bottom:1px solid #ffffff33;padding:12px 3px}
+#overlay{position:fixed;inset:0;background:#090617dd;display:none;align-items:center;justify-content:center;padding:20px;z-index:10}
 #overlay.show{display:flex}
-.modal{width:min(100%,350px);border:2px solid #f4d6a2;border-radius:26px;background:linear-gradient(#6b4799,#281742);padding:25px;text-align:center;box-shadow:0 25px 70px #0009}
-.modal .art{font-size:65px}
-.modal .btn{width:100%;margin-top:12px}
-footer{text-align:center;color:#bda8d8;font-size:10px;padding:15px}
-@media(max-height:720px){header{padding-top:12px}.screen{padding-top:3px}#board{min-height:100px;margin:4px auto}#wheel{width:205px;height:205px}#entry{margin-top:0}.chapter{margin-top:5px}}
+.modal{width:min(350px,100%);padding:25px;text-align:center;background:linear-gradient(#66458d,#261640);border:2px solid #f6d79d;border-radius:25px}
+.modal .btn{width:100%;margin-top:10px}
+input{width:100%;padding:12px;border-radius:12px;border:1px solid #e4c99c;background:#ffffffef;color:#34234d}
+small{color:#d6c5e9}
 </style>
 </head>
 <body>
 <div id="app">
 <header>
-<div>
-<div class="logo">AURORA</div>
-<div class="small">LE ISOLE DELLE PAROLE</div>
-</div>
+<div><div class="logo">AURORA</div><div class="sub">LE ISOLE DELLE PAROLE</div></div>
 <div class="coins" id="coins">✦ 100</div>
 </header>
 
-<section id="map" class="screen active">
-<h1>✦ I Regni Magici ✦</h1>
-<p>Un viaggio tra parole, stelle e misteri</p>
+<section class="screen active" id="home">
+<div class="hero">🏰🐉</div>
+<h1>Benvenuto ad AURORA</h1>
+<p>Un mondo magico ti aspetta!</p>
+<button class="btn" style="width:100%" onclick="show('map')">▶ GIOCA</button>
+<div class="menu">
+<button class="btn alt" onclick="show('minigames')"><span>🧩</span>Minigiochi</button>
+<button class="btn alt" onclick="show('dragon')"><span>🐉</span>Il mio drago</button>
+<button class="btn alt" onclick="show('shop')"><span>🛒</span>Negozio</button>
+<button class="btn alt" onclick="show('rewards')"><span>🎁</span>Premi</button>
+<button class="btn alt" onclick="show('profile')"><span>👤</span>Profilo</button>
+<button class="btn alt" onclick="show('settings')"><span>⚙️</span>Impostazioni</button>
+</div>
+</section>
+
+<section class="screen" id="map">
+<button class="btn alt back" onclick="show('home')">← Home</button>
+<h1>🗺️ I Regni Magici</h1>
+<p>Completa i livelli e sblocca le isole.</p>
 <div id="islands"></div>
 </section>
 
-<section id="game" class="screen">
-<div class="levelhead">
-<button class="btn secondary" id="back">← Mappa</button>
-<span id="levelNumber">Livello 1</span>
-</div>
-<div class="chapter" id="chapter"></div>
-<h1 id="levelTitle"></h1>
-<p id="description"></p>
-<div class="progress"><div id="bar"></div></div>
+<section class="screen" id="game">
+<button class="btn alt back" onclick="show('map')">← Mappa</button>
+<small id="chapter"></small>
+<h2 id="levelTitle"></h2>
+<p id="levelNumber"></p>
 <div id="board"></div>
 <div id="entry">· · ·</div>
 <div id="wheel">
-<svg viewBox="0 0 260 260">
-<polyline id="trace" fill="none" stroke="#ffe3a0" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" points=""/>
-</svg>
+<svg viewBox="0 0 260 260"><polyline id="trace" points="" fill="none" stroke="#ffe0a0" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </div>
 <div class="actions">
-<button class="btn secondary" id="shuffle">⤨ Mescola</button>
-<button class="btn" id="hint">✦ Aiuto · 25</button>
+<button class="btn alt" onclick="shuffle()">⤨ Mescola</button>
+<button class="btn" onclick="hint()">✦ Aiuto · 25</button>
 </div>
-<div id="message"></div>
+<div id="msg"></div>
 </section>
 
-<footer>AURORA · Un'avventura tra le parole</footer>
+<section class="screen" id="minigames">
+<button class="btn alt back" onclick="show('home')">← Home</button>
+<h1>🧩 Minigiochi</h1>
+<p>Gioca e guadagna stelle!</p>
+<div class="panel"><h2>🃏 Memory magico</h2><p>Trova tutte le coppie di simboli.</p><button class="btn" onclick="startMemory()">Gioca</button></div>
+<div class="panel"><h2>🧠 Indovinelli</h2><p>Rispondi alle domande del mago.</p><button class="btn" onclick="startQuiz()">Gioca</button></div>
+<div class="panel"><h2>⏱️ Sfida a tempo</h2><p>Rispondi a più domande possibili in 30 secondi.</p><button class="btn" onclick="startTime()">Gioca</button></div>
+</section>
+
+<section class="screen" id="activity">
+<button class="btn alt back" onclick="leaveActivity()">← Minigiochi</button>
+<h1 id="activityTitle"></h1>
+<p id="activityInfo"></p>
+<div id="activityBody"></div>
+</section>
+
+<section class="screen" id="dragon">
+<button class="btn alt back" onclick="show('home')">← Home</button>
+<h1>🐉 Il tuo drago</h1>
+<div class="panel">
+<div class="hero" id="dragonArt">🥚</div>
+<h2 id="dragonName"></h2>
+<p id="dragonInfo"></p>
+<button class="btn" onclick="feedDragon()">🍎 Nutri · 30 ✦</button>
+</div>
+<p>Ogni pasto fa crescere il tuo compagno magico.</p>
+</section>
+
+<section class="screen" id="shop">
+<button class="btn alt back" onclick="show('home')">← Home</button>
+<h1>🛒 Negozio magico</h1>
+<p>Usa le stelle guadagnate giocando.</p>
+<div class="shop" id="shopItems"></div>
+</section>
+
+<section class="screen" id="rewards">
+<button class="btn alt back" onclick="show('home')">← Home</button>
+<h1>🎁 Premi giornalieri</h1>
+<div class="panel">
+<div class="hero">🎁</div>
+<h2>Scrigno delle stelle</h2>
+<p>Apri uno scrigno ogni giorno e ricevi 50 stelle!</p>
+<button class="btn" id="claim" onclick="claimReward()">Apri lo scrigno</button>
+<p id="rewardInfo"></p>
+</div>
+</section>
+
+<section class="screen" id="profile">
+<button class="btn alt back" onclick="show('home')">← Home</button>
+<h1>👤 Profilo</h1>
+<div class="panel">
+<h2>Esploratore di Aurora</h2>
+<div id="stats"></div>
+</div>
+</section>
+
+<section class="screen" id="settings">
+<button class="btn alt back" onclick="show('home')">← Home</button>
+<h1>⚙️ Impostazioni</h1>
+<div class="panel">
+<p>I progressi vengono salvati automaticamente in questo browser.</p>
+<button class="btn alt" onclick="renameDragon()">✏️ Rinomina il drago</button>
+</div>
+</section>
 </div>
 
 <div id="overlay">
 <div class="modal">
-<div class="art" id="winArt">🏆</div>
+<div style="font-size:65px">🏆✨</div>
 <h2 id="winTitle">Livello completato!</h2>
-<p id="winText">Hai trovato tutte le parole!</p>
-<button class="btn" id="next">Continua il viaggio →</button>
-<button class="btn secondary" id="winMap">Torna alla mappa</button>
+<p id="winText"></p>
+<button class="btn" id="next">Continua →</button>
+<button class="btn alt" onclick="closeModal();show('map')">Torna alla mappa</button>
 </div>
 </div>
 
 <script>
 "use strict";
-
+const $=id=>document.getElementById(id);
 const data=[
 ["CASA","CASA","Il primo orizzonte"],
 ["MARE","MARE,REMA,ARME","La costa dorata"],
@@ -150,282 +219,426 @@ const data=[
 ["DRAGO","DRAGO","Il guardiano del cielo"],
 ["PERLA","PERLA","La corona di Aurora"]
 ];
-
-const levels=data.map(x=>({
-letters:x[0],
-words:x[1].split(","),
-title:x[2]
-}));
-
+const levels=data.map(x=>({letters:x[0],words:x[1].split(","),title:x[2]}));
 const realms=[
-{name:"Isola dell'Alba",art:"🏰🌅",desc:"Il risveglio della magia · Livelli 1–10"},
-{name:"Regno della Luna",art:"🌙🔮",desc:"Tra stelle e misteri · Livelli 11–20"},
-{name:"Isola dei Draghi",art:"🐉💎",desc:"Il regno dei cristalli · Livelli 21–30"}
+["🏰🌅","Isola dell'Alba"],
+["🌙🔮","Regno della Luna"],
+["🐉💎","Isola dei Draghi"]
 ];
-
-const $=id=>document.getElementById(id);
-
-function readNumber(key,fallback){
-const n=Number(localStorage.getItem(key));
-return Number.isFinite(n)?n:fallback;
+const store=(key,value)=>localStorage.setItem(key,JSON.stringify(value));
+function load(key,fallback){
+try{
+const x=localStorage.getItem(key);
+return x===null?fallback:JSON.parse(x);
+}catch{return fallback;}
 }
-
-let level=Math.max(0,Math.min(29,readNumber(
-"aurora_level",
-readNumber("letteria_level",0)
-)));
-
-let coins=Math.max(0,readNumber(
-"aurora_coins",
-readNumber("letteria_coins",100)
-));
-
-let unlocked=Math.max(level,Math.min(29,
-readNumber("aurora_unlocked",level)
-));
-
-let found=[];
-let order=[];
-let selected=[];
-let coords=[];
-let dragging=false;
-let finished=false;
+function number(key,fallback){
+const x=Number(load(key,fallback));
+return Number.isFinite(x)?x:fallback;
+}
+let level=Math.max(0,Math.min(29,number("aurora_level",number("letteria_level",0))));
+let coins=Math.max(0,number("aurora_coins",number("letteria_coins",100)));
+let unlocked=Math.max(level,Math.min(29,number("aurora_unlocked",level)));
+let dragonFood=number("aurora_dragon_food",0);
+let dragonName=load("aurora_dragon_name","Scintilla");
+let purchases=load("aurora_purchases",[]);
+let lastReward=load("aurora_last_reward","");
+let found=[],order=[],selected=[],coords=[],dragging=false,finished=false;
+let activityToken=0;
 
 function save(){
-localStorage.setItem("aurora_level",level);
-localStorage.setItem("aurora_coins",coins);
-localStorage.setItem("aurora_unlocked",unlocked);
-}
-
-function updateCoins(){
+store("aurora_level",level);
+store("aurora_coins",coins);
+store("aurora_unlocked",unlocked);
+store("aurora_dragon_food",dragonFood);
+store("aurora_dragon_name",dragonName);
+store("aurora_purchases",purchases);
+store("aurora_last_reward",lastReward);
 $("coins").textContent="✦ "+coins;
 }
-
-function showScreen(name){
-$("map").classList.toggle("active",name==="map");
-$("game").classList.toggle("active",name==="game");
+function earn(n){
+coins+=n;
+save();
+}
+function spend(n){
+if(coins<n){alert("Non hai abbastanza stelle!");return false;}
+coins-=n;save();return true;
+}
+function show(name){
+if(name!=="activity")activityToken++;
+document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("active",s.id===name));
+if(name==="map")renderMap();
+if(name==="dragon")renderDragon();
+if(name==="shop")renderShop();
+if(name==="rewards")renderRewards();
+if(name==="profile")renderProfile();
+save();
 window.scrollTo(0,0);
 }
-
+function closeModal(){$("overlay").classList.remove("show");}
+function modal(title,description,next){
+$("winTitle").textContent=title;
+$("winText").textContent=description;
+$("next").onclick=next;
+$("overlay").classList.add("show");
+}
 function renderMap(){
-updateCoins();
 $("islands").innerHTML="";
-realms.forEach((realm,k)=>{
-const start=k*10;
+realms.forEach((r,k)=>{
 const box=document.createElement("div");
-box.className="island";
-const art=document.createElement("div");
-art.className="art";
-art.textContent=unlocked<start?"🔒":realm.art;
-const title=document.createElement("h2");
-title.textContent=realm.name;
-const desc=document.createElement("p");
-desc.textContent=realm.desc;
-const nodes=document.createElement("div");
-nodes.className="nodes";
-
-for(let i=start;i<start+10;i++){
+box.className="panel";
+box.innerHTML="<div style='font-size:50px'>"+r[0]+"</div><h2>"+r[1]+"</h2><p>Livelli "+(k*10+1)+"–"+(k*10+10)+"</p>";
+const grid=document.createElement("div");
+grid.className="grid";
+for(let i=k*10;i<k*10+10;i++){
 const b=document.createElement("button");
-b.className="node";
-if(i>unlocked){
-b.classList.add("locked");
-b.textContent="🔒";
-b.disabled=true;
-}else{
-b.textContent=i+1;
-if(i<unlocked)b.classList.add("done");
-if(i===level)b.classList.add("current");
+b.className="node"+(i>unlocked?" lock":"")+(i===level?" current":"");
+b.textContent=i>unlocked?"🔒":i+1;
+b.disabled=i>unlocked;
 b.onclick=()=>startLevel(i);
+grid.appendChild(b);
 }
-nodes.appendChild(b);
-}
-box.append(art,title,desc,nodes);
+box.appendChild(grid);
 $("islands").appendChild(box);
 });
 }
-
-function openMap(){
-$("overlay").classList.remove("show");
-renderMap();
-showScreen("map");
-}
-
 function startLevel(i){
 if(i>unlocked)return;
-level=i;
-found=[];
-selected=[];
-finished=false;
-order=[...levels[level].letters];
-$("levelNumber").textContent="Livello "+(level+1);
-$("chapter").textContent=realms[Math.floor(level/10)].name;
-$("levelTitle").textContent=levels[level].title;
-$("description").textContent="Trova "+levels[level].words.length+" parole nascoste";
-$("message").textContent="";
-$("overlay").classList.remove("show");
-showScreen("game");
+level=i;found=[];selected=[];finished=false;
+order=[...levels[i].letters];
+$("chapter").textContent=realms[Math.floor(i/10)][1];
+$("levelTitle").textContent=levels[i].title;
+$("levelNumber").textContent="Livello "+(i+1);
+$("msg").textContent="";
+closeModal();
+show("game");
 draw();
-save();
 }
-
 function draw(){
 const l=levels[level];
-updateCoins();
-$("bar").style.width=(found.length/l.words.length*100)+"%";
 $("board").innerHTML="";
-
-l.words.forEach(word=>{
+l.words.forEach(w=>{
 const row=document.createElement("div");
 row.className="word";
-[...word].forEach(c=>{
+for(const c of w){
 const cell=document.createElement("div");
-cell.className="cell "+(found.includes(word)?"":"empty");
-cell.textContent=found.includes(word)?c:"";
+cell.className="cell"+(found.includes(w)?" found":"");
+cell.textContent=found.includes(w)?c:"";
 row.appendChild(cell);
-});
+}
 $("board").appendChild(row);
 });
-
-const wheel=$("wheel");
-wheel.querySelectorAll(".letter").forEach(e=>e.remove());
+$("wheel").querySelectorAll(".letter").forEach(x=>x.remove());
 coords=[];
-
 order.forEach((c,i)=>{
 const a=-Math.PI/2+i*2*Math.PI/order.length;
-const x=130+88*Math.cos(a);
-const y=130+88*Math.sin(a);
+const x=130+88*Math.cos(a),y=130+88*Math.sin(a);
 coords.push({x,y});
 const el=document.createElement("div");
 el.className="letter";
-el.style.left=(x/260*100)+"%";
-el.style.top=(y/260*100)+"%";
 el.dataset.i=i;
+el.style.left=x/260*100+"%";
+el.style.top=y/260*100+"%";
 el.textContent=c;
-wheel.appendChild(el);
+$("wheel").appendChild(el);
 });
 renderSelection();
 }
-
 function renderSelection(){
 $("entry").textContent=selected.map(i=>order[i]).join("")||"· · ·";
-document.querySelectorAll(".letter").forEach(el=>{
-el.classList.toggle("on",selected.includes(Number(el.dataset.i)));
-});
-$("trace").setAttribute("points",
-selected.map(i=>coords[i].x+","+coords[i].y).join(" ")
-);
+document.querySelectorAll(".letter").forEach(e=>e.classList.toggle("on",selected.includes(+e.dataset.i)));
+$("trace").setAttribute("points",selected.map(i=>coords[i].x+","+coords[i].y).join(" "));
 }
-
 function locate(e){
 const r=$("wheel").getBoundingClientRect();
 const x=(e.clientX-r.left)/r.width*260;
 const y=(e.clientY-r.top)/r.height*260;
 return coords.findIndex(p=>Math.hypot(p.x-x,p.y-y)<36);
 }
-
-function addLetter(i){
+function add(i){
 if(i<0||selected.includes(i))return;
 selected.push(i);
 renderSelection();
 }
-
 function complete(){
 if(finished)return;
 finished=true;
 unlocked=Math.max(unlocked,Math.min(level+1,29));
 save();
 setTimeout(()=>{
-$("winArt").textContent=level===29?"👑🐉":"🏆✨";
-$("winTitle").textContent=level===29?"Hai conquistato AURORA!":"Livello completato!";
-$("winText").textContent=level===29?
-"Hai completato tutti e 30 i livelli!":
-"Hai sbloccato il prossimo livello!";
-$("next").textContent=level===29?"Torna alla mappa":"Prossimo livello →";
-$("overlay").classList.add("show");
-},500);
+modal(level===29?"Hai conquistato AURORA!":"Livello completato!","Hai sbloccato il prossimo livello!",()=>{
+closeModal();
+if(level<29)startLevel(level+1);
+else show("map");
+});
+},450);
 }
-
-function checkWord(){
+function check(){
 const word=selected.map(i=>order[i]).join("");
 const l=levels[level];
-
 if(l.words.includes(word)&&!found.includes(word)){
 found.push(word);
-coins+=10;
-$("message").textContent="✦ "+word+" · +10 monete";
-save();
+earn(10);
+$("msg").textContent="✦ "+word+" · +10 stelle";
 draw();
 if(found.length===l.words.length)complete();
 }else if(word){
-$("message").textContent=found.includes(word)?
-"Parola già trovata!":"Riprova ✧";
+$("msg").textContent=found.includes(word)?"Parola già trovata!":"Riprova ✧";
 }
 selected=[];
 renderSelection();
 }
-
 const wheel=$("wheel");
-
 wheel.addEventListener("pointerdown",e=>{
 if(finished)return;
-dragging=true;
-selected=[];
+dragging=true;selected=[];
 wheel.setPointerCapture(e.pointerId);
-addLetter(locate(e));
+add(locate(e));
 });
-
-wheel.addEventListener("pointermove",e=>{
-if(dragging)addLetter(locate(e));
-});
-
+wheel.addEventListener("pointermove",e=>{if(dragging)add(locate(e));});
 wheel.addEventListener("pointerup",()=>{
 if(!dragging)return;
-dragging=false;
-checkWord();
+dragging=false;check();
 });
-
 wheel.addEventListener("pointercancel",()=>{
-dragging=false;
-selected=[];
-renderSelection();
+dragging=false;selected=[];renderSelection();
 });
-
-$("shuffle").onclick=()=>{
+function shuffle(){
 for(let i=order.length-1;i>0;i--){
 const j=Math.floor(Math.random()*(i+1));
 [order[i],order[j]]=[order[j],order[i]];
 }
-selected=[];
-draw();
-$("message").textContent="Lettere mescolate ✧";
-};
-
-$("hint").onclick=()=>{
-if(finished)return;
-if(coins<25){
-$("message").textContent="Servono 25 monete!";
-return;
+selected=[];draw();
+$("msg").textContent="Lettere mescolate ✧";
 }
-const word=levels[level].words.find(w=>!found.includes(w));
-if(!word)return;
-coins-=25;
-found.push(word);
-$("message").textContent="Suggerimento: "+word;
-save();
+function hint(){
+if(finished)return;
+if(!spend(25))return;
+const w=levels[level].words.find(w=>!found.includes(w));
+if(!w){earn(25);return;}
+found.push(w);
+$("msg").textContent="Suggerimento: "+w;
 draw();
 if(found.length===levels[level].words.length)complete();
-};
+}
 
-$("back").onclick=openMap;
-$("winMap").onclick=openMap;
-$("next").onclick=()=>{
-$("overlay").classList.remove("show");
-if(level<29)startLevel(level+1);
-else openMap();
-};
+/* DRAGO */
+function renderDragon(){
+const stage=Math.floor(dragonFood/3);
+$("dragonArt").textContent=stage===0?"🥚":stage===1?"🐣":stage===2?"🐉":"🐲✨";
+$("dragonName").textContent=dragonName;
+$("dragonInfo").textContent="Pasti: "+dragonFood+" · Evoluzione "+(stage+1);
+}
+function feedDragon(){
+if(!spend(30))return;
+dragonFood++;
+save();renderDragon();
+if(dragonFood%3===0)alert("✨ Il tuo drago è cresciuto!");
+}
+function renameDragon(){
+const n=prompt("Come vuoi chiamare il tuo drago?",dragonName);
+if(n&&n.trim()){
+dragonName=n.trim().slice(0,20);
+save();alert("Il tuo drago si chiama "+dragonName+"!");
+}
+}
 
-renderMap();
-showScreen("map");
+/* NEGOZIO */
+const items=[
+["👑","Corona dorata",100],
+["💎","Cristallo magico",75],
+["🪄","Bacchetta stellare",120],
+["🏰","Castello incantato",200],
+["🌈","Arcobaleno",90],
+["🔥","Fiamma di drago",150]
+];
+function renderShop(){
+$("shopItems").innerHTML="";
+items.forEach((it,i)=>{
+const owned=purchases.includes(i);
+const box=document.createElement("div");
+box.className="panel";
+const art=document.createElement("div");
+art.className="art";art.textContent=it[0];
+const h=document.createElement("h3");h.textContent=it[1];
+const b=document.createElement("button");
+b.className="btn";
+b.textContent=owned?"Acquistato ✓":it[2]+" ✦";
+b.disabled=owned;
+b.onclick=()=>{
+if(!spend(it[2]))return;
+purchases.push(i);save();renderShop();
+};
+box.append(art,h,b);
+$("shopItems").appendChild(box);
+});
+}
+
+/* PREMI */
+function today(){
+const d=new Date();
+return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
+}
+function renderRewards(){
+const claimed=lastReward===today();
+$("claim").disabled=claimed;
+$("claim").textContent=claimed?"Già ritirato ✓":"Apri lo scrigno";
+$("rewardInfo").textContent=claimed?"Torna domani per un nuovo premio!":"Hai un premio disponibile!";
+}
+function claimReward(){
+if(lastReward===today())return;
+lastReward=today();
+earn(50);
+renderRewards();
+alert("🎉 Hai ricevuto 50 stelle!");
+}
+
+/* PROFILO */
+function renderProfile(){
+const stats=[
+["Livello attuale",level+1],
+["Livelli sbloccati",unlocked+1+" / 30"],
+["Stelle disponibili",coins],
+["Pasti del drago",dragonFood],
+["Oggetti acquistati",purchases.length],
+["Compagno magico",dragonName]
+];
+$("stats").innerHTML="";
+stats.forEach(([name,value])=>{
+const row=document.createElement("div");
+row.className="stat";
+const a=document.createElement("span");
+a.textContent=name;
+const b=document.createElement("strong");
+b.textContent=value;
+row.append(a,b);
+$("stats").appendChild(row);
+});
+}
+
+/* MEMORY */
+let memoryCards=[],memoryOpen=[],memoryMatched=[],memoryBusy=false;
+function leaveActivity(){
+activityToken++;show("minigames");
+}
+function startMemory(){
+activityToken++;
+$("activityTitle").textContent="🃏 Memory magico";
+$("activityInfo").textContent="Trova tutte le coppie!";
+const symbols=["🐉","🌙","💎","🏰","⭐","🔮"];
+memoryCards=[...symbols,...symbols].sort(()=>Math.random()-.5);
+memoryOpen=[];memoryMatched=[];memoryBusy=false;
+show("activity");renderMemory();
+}
+function renderMemory(){
+const area=$("activityBody");
+area.innerHTML="";
+const grid=document.createElement("div");
+grid.className="memory";
+memoryCards.forEach((symbol,i)=>{
+const b=document.createElement("button");
+const visible=memoryOpen.includes(i)||memoryMatched.includes(i);
+b.className=visible?"open":"";
+b.textContent=visible?symbol:"?";
+b.disabled=visible||memoryBusy;
+b.onclick=()=>flipMemory(i);
+grid.appendChild(b);
+});
+area.appendChild(grid);
+}
+function flipMemory(i){
+if(memoryBusy||memoryOpen.includes(i)||memoryMatched.includes(i))return;
+memoryOpen.push(i);renderMemory();
+if(memoryOpen.length!==2)return;
+const [a,b]=memoryOpen;
+if(memoryCards[a]===memoryCards[b]){
+memoryMatched.push(a,b);memoryOpen=[];
+renderMemory();
+if(memoryMatched.length===memoryCards.length){
+earn(30);
+$("activityInfo").textContent="🎉 Hai vinto 30 stelle!";
+}
+}else{
+memoryBusy=true;
+const token=activityToken;
+setTimeout(()=>{
+if(token!==activityToken)return;
+memoryOpen=[];memoryBusy=false;renderMemory();
+},750);
+}
+}
+
+/* INDOVINELLI */
+const questions=[
+["Cosa brilla di notte nel cielo?","LUNA",["LUNA","CASA","PANE"]],
+["Quale animale abbaia?","CANE",["CANE","GATTO","PESCE"]],
+["Cosa illumina il giorno?","SOLE",["SOLE","VENTO","FIUME"]],
+["Cosa scorre tra le montagne?","FIUME",["FIUME","PORTA","FESTA"]],
+["Cosa usi per aprire una porta?","CHIAVE",["PIETRA","CHIAVE","NUVOLA"]],
+["Quale creatura sputa fuoco nelle fiabe?","DRAGO",["DRAGO","CANE","ORSO"]],
+["Cosa vedi quando dormi?","SOGNO",["SOGNO","PANE","MONTE"]],
+["Cosa cade dalle nuvole?","PIOGGIA",["SOLE","PIOGGIA","TERRA"]]
+];
+let quizIndex=0,quizScore=0,quizMode="normal",quizDeadline=0;
+function startQuiz(){
+activityToken++;
+quizMode="normal";quizIndex=0;quizScore=0;
+show("activity");nextQuestion();
+}
+function startTime(){
+activityToken++;
+quizMode="time";quizIndex=0;quizScore=0;
+quizDeadline=Date.now()+30000;
+show("activity");nextQuestion();
+const token=activityToken;
+function tick(){
+if(token!==activityToken)return;
+const left=Math.max(0,Math.ceil((quizDeadline-Date.now())/1000));
+$("activityInfo").textContent="⏱️ "+left+" secondi · "+quizScore+" risposte giuste";
+if(left<=0){finishQuiz();return;}
+setTimeout(tick,250);
+}
+tick();
+}
+function nextQuestion(){
+if(quizMode==="time"&&Date.now()>=quizDeadline){finishQuiz();return;}
+if(quizMode==="normal"&&quizIndex>=5){finishQuiz();return;}
+const q=questions[quizIndex%questions.length];
+$("activityTitle").textContent=quizMode==="time"?"⏱️ Sfida a tempo":"🧠 Indovinelli";
+if(quizMode==="normal")$("activityInfo").textContent="Domanda "+(quizIndex+1)+" di 5";
+$("activityBody").innerHTML="";
+const box=document.createElement("div");
+box.className="panel";
+const h=document.createElement("h2");h.textContent=q[0];
+const opts=document.createElement("div");opts.className="options";
+q[2].forEach(answer=>{
+const b=document.createElement("button");
+b.className="btn alt";b.textContent=answer;
+b.onclick=()=>{
+if(answer===q[1])quizScore++;
+quizIndex++;
+nextQuestion();
+};
+opts.appendChild(b);
+});
+box.append(h,opts);
+$("activityBody").appendChild(box);
+}
+function finishQuiz(){
+activityToken++;
+const reward=quizMode==="time"?Math.min(quizScore*5,50):quizScore*10;
+earn(reward);
+$("activityTitle").textContent="🏆 Sfida completata!";
+$("activityInfo").textContent="Hai risposto correttamente "+quizScore+" volte!";
+$("activityBody").innerHTML="";
+const p=document.createElement("h2");
+p.textContent="Hai guadagnato "+reward+" stelle! ✨";
+const b=document.createElement("button");
+b.className="btn";b.textContent="Torna ai minigiochi";
+b.onclick=leaveActivity;
+$("activityBody").append(p,b);
+}
+save();
 </script>
 </body>
 </html>
